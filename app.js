@@ -10,13 +10,23 @@ const clearBtn = document.querySelector('.clear-tasks')
 const taskInput = document.querySelector('#task');
 
 
+
+
 // Load all event listerners
 loadEventListeners();
 
 function loadEventListeners() {
   // Add task event
   form.addEventListener('submit', addTask);
+
+  //Remove task event
+  taskList.addEventListener('click', removeTask);
+
+  // Clear task event
+  clearBtn.addEventListener('click', clearTasks);
 }
+
+
 
 // create Add task(addTask)
 function addTask(e) {
@@ -47,4 +57,25 @@ taskInput.value = '';
 
 
   e.preventDefault();
+}
+
+
+function removeTask(e){
+  if(e.target.parentElement.classList.contains('delete-item')){
+    if(confirm('Are you sure?')) {
+    e.target.parentElement.parentElement.remove();
+    }
+    // console.log(e.target);
+  }
+}
+
+
+function clearTasks(e) {
+  // This clears everything BUT slower compared to looping through the taskList
+
+ // taskList.innerHTML = ''; // Or
+
+ while(taskList.firstChild) {
+   taskList.removeChild(taskList.firstChild);
+ }
 }
