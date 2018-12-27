@@ -160,8 +160,22 @@ function clearTasks(e) {
  while(taskList.firstChild) {
    taskList.removeChild(taskList.firstChild);
  }
+
+ // https://jsperf.com/innerhtml-vs-removechild
+
+// Clear tasks
+ clearTasksFromLocalStorage();
+
 }
 
+
+// Clear Tasks
+function clearTasksFromLocalStorage(){
+  localStorage.clear();
+}
+
+
+// Filter Tasks
 function filterTasks(e) {
   const text = e.target.value.toLowerCase();
 
